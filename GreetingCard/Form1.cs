@@ -28,15 +28,14 @@ namespace GreetingCard
         Pen redPen = new Pen(Color.Red, 6);
         Pen orangePen = new Pen(Color.DarkOrange, 20);
         Pen yellowPen = new Pen(Color.Yellow, 2);
-        Pen brownPen = new Pen(Color.Brown, 8);
 
         SolidBrush orangeBrush = new SolidBrush(Color.Orange);
         SolidBrush redBrush = new SolidBrush(Color.Red);
         SolidBrush greenBrush = new SolidBrush(Color.Green);
-        SolidBrush blackBrush = new SolidBrush(Color.Black);
         SolidBrush brownBrush = new SolidBrush(Color.Brown);
 
-        Font drawFont = new Font("Arial", 26, FontStyle.Regular);
+        Font arialFont = new Font("Arial", 26, FontStyle.Regular);
+        Font oldFont = new Font("Ravie", 30, FontStyle.Bold);
 
         public greetingCard()
         {
@@ -50,10 +49,10 @@ namespace GreetingCard
 
             int x = 0;
 
-            while (x < 331)       // Makes the word move from the left onto the screen.
+            while (x < 331)       // Makes the word "TREAT" move from the left onto the screen.
             {
                 g.Clear(Color.Black);
-                g.DrawString("TREAT!!", drawFont, orangeBrush, 0 + x, 150);
+                g.DrawString("TREAT!!", oldFont, orangeBrush, 0 + x, 150);
                 x = x + 40;
                 Thread.Sleep(200);
             }
@@ -72,15 +71,17 @@ namespace GreetingCard
 
             Thread.Sleep(2000);
             g.Clear(Color.Black);
+
             evilLaugh.PlayLooping();
+
             int angle = 0;
 
-            while (angle < 361)    // Rotates the words
+            while (angle < 361)    // Rotates the word "TRICK".
             {
                 g.Clear(Color.Black);
                 g.TranslateTransform(360, 150);
                 g.RotateTransform(angle);
-                g.DrawString("TRICK\n\nHAHA", drawFont, orangeBrush, 0,0);
+                g.DrawString("TRICK\n\nHAHA", oldFont, orangeBrush, 0,0);
                 g.ResetTransform();
                 Thread.Sleep(100);
                 angle = angle + 45;
@@ -105,11 +106,12 @@ namespace GreetingCard
         private void greetingCard_Shown(object sender, EventArgs e)
         {
             introSound.PlayLooping();
+
             Graphics g = this.CreateGraphics();
             g.Clear(Color.Black);
 
             g.DrawRectangle(orangePen, 245, 90, 320, 350);  // Displays text.
-            g.DrawString("Happy Halloween\n\n\n  Trick Or Treat?", drawFont, orangeBrush, 260, 100);
+            g.DrawString("Happy Halloween\n\n\n  Trick Or Treat?", arialFont, orangeBrush, 260, 100);
 
             for (int i = 0; i < 191; i = i + 190)            // Makes my pumpkins twice.
             {
